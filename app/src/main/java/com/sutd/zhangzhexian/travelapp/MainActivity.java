@@ -37,6 +37,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //This is a testing
+    //This is a test
 
 }
