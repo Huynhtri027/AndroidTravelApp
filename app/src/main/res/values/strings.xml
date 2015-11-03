@@ -5,4 +5,17 @@
     <string name="action_settings">Settings</string>
     <string name="text1">Travel App</string>
     <string name="title_activity_maps">Route Planning</string>
+
+    <string name="title_section1">Profile</string>
+    <string name="title_section2">Attraction List</string>
+    <string name="title_section3">Daily Itinerary</string>
+    <string name="title_section4">Attraction Locator</string>
+    <string name="title_section5">Route Map</string>
+    <string name="title_section6">Travel Journal</string>
+    <string name="title_section7">Postcard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menuicon">menuicon</string>
+
 </resources>
