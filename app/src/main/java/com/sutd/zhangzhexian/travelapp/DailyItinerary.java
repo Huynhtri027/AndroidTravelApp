@@ -89,21 +89,14 @@ public class DailyItinerary extends Fragment {
 
         }
 
-
-
-
-
-
 //        if (currentBudget<0)
 //            returnList[0]=-1;
-
-
-
-
         return returnList;
     }
 
-
-
+    public int [][] fastApproximate(){
+        // TODO: 4/11/15 implement this 
+        return new int[1][1];
+    }
 
 }
