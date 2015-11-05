@@ -18,5 +18,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="menuicon">menuicon</string>
     <string name="title_activity_route_planning">Route Plan</string>
+    <string name="search_button">Search</string>
+    <string name="route">Planned Route</string>
 
 </resources>
