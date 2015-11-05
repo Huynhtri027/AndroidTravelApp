@@ -23,7 +23,7 @@ public class DailyItinerary extends Fragment {
 
 
 
-    //return the attraction id by attraction name
+   /* //return the attraction id by attraction name
     public int getAttractionid(String attraction, String[] attractions){
         for (int i=1;i<=attraction.length();i++){
             if (attraction==attractions[i])
@@ -34,7 +34,7 @@ public class DailyItinerary extends Fragment {
 
     public String getAttractionName(int attraction, String[] attractions){
         return attractions[attraction];
-    }
+    }*/
 
     public int getMaxSize(int a){
         int ans=1;
@@ -150,7 +150,6 @@ public class DailyItinerary extends Fragment {
         return new int[1][1];
     }
 
-
     public Route[] bruteForce(int[] attractions){
         Attraction[] attractionList=new Attraction[attractions.length];
         for (int i = 0; i <attractions.length; i++)
@@ -195,8 +194,6 @@ public class DailyItinerary extends Fragment {
         for (int i = 0; i < attractionList.length; i++) {
             newAttractionList[i].visited=attractionList[i].visited;
         }
-
-
 
         //find next attraction
         for (int i = 0; i < attractionList.length ; i++) {
