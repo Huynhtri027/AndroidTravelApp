@@ -74,15 +74,15 @@ public class Main {
 
         //add ans to answer set if finished
         if (allVisited(attractionList)){
-            for (Route an : ans) {
-                if (!an.done) {
-                    an.done = true;
-                    an.cost = thisRoute.cost;
-                    an.time = thisRoute.time;
+            for (int i = 0; i < ans.length; i++) {
+                if(!ans[i].done){
+                    ans[i].done=true;
+                    ans[i].cost=thisRoute.cost;
+                    ans[i].time=thisRoute.time;
                     for (int j = 0; j < thisRoute.route.length; j++) {
-                        an.route[j].setTransport(thisRoute.route[j].getTransport());
-                        an.route[j].setAttractionId(thisRoute.route[j].getAttractionId());
-                        an.route[j].setPlanned(thisRoute.route[j].isPlanned());
+                        ans[i].route[j].setTransport(thisRoute.route[j].getTransport());
+                        ans[i].route[j].setAttractionId(thisRoute.route[j].getAttractionId());
+                        ans[i].route[j].setPlanned(thisRoute.route[j].isPlanned());
                     }
                 }
             }
