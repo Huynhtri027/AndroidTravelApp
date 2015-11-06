@@ -1,5 +1,6 @@
 package com.sutd.zhangzhexian.travelapp;
 
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -11,7 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.location.Location;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationServices;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,30 +41,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Lakshita on 11/4/2015.
  */
-public class AttractionLocator extends Fragment implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
-    protected static final String TAG = "MainActivity";
-
-    /**
-     * Provides the entry point to Google Play services.
-     */
-    protected GoogleApiClient mGoogleApiClient;
-
-    /**
-     * Represents a geographical location.
-     */
-    protected Location mLastLocation;
+public class AttractionLocator extends Fragment implements OnMapReadyCallback,
+        ConnectionCallbacks, OnConnectionFailedListener {
 
     GoogleMap mMap;
     View root;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.mapview, container, false);
+        root = inflater.inflate(R.layout.attraction_locator, container, false);
         // TODO: 5/11/15 Some Problem with Fragment
         //only for activity
         /*setContentView(R.layout.activity_maps);*/
@@ -59,18 +62,11 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        // I don't know if I should do this
+        // mMap = mapFragment.getMap();
+        // will it return me a Google Map object that CAN update the map view?
         buildGoogleApiClient();
         return root;
-    }
-    /**
-     * Builds a GoogleApiClient. Uses the addApi() method to request the LocationServices API.
-     */
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -80,7 +76,11 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         LatLng MBS = new LatLng(1.2826, 103.8584);
         mMap.addMarker(new MarkerOptions().position(MBS).title("Marina Bay Sands"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(MBS));
-
+        /*
+        LatLng currentLocation = new LatLng(currentLat, currentLong);
+        mMap.addMarker(new MarkerOptions().position(MBS));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+         */
     }
 
     public static int minDistance(String word1, String word2) {
@@ -142,13 +142,14 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         Collections.sort(myList);
         return (String) balance.get(myList.get(0));
     }
-
+    // the onClick method that takes in the string in the searchbox and pass it to Geocode to look for Lat and Long
+    // then it will make a LatLng object to be used to update the map fragment.
     public void showSearchedLocation(GoogleMap googleMap){
         mMap = googleMap;
         EditText searchEditText = (EditText) getView().findViewById(R.id.searchBox);
         String searchText = searchEditText.getText().toString();
         String locationName = correctedSearch(searchText);
-        Geocoder myGeocoder = new Geocoder(getContext());
+        Geocoder myGeocoder = new Geocoder(getActivity(), Locale.getDefault());
         List<Address> matchedList = null;
         try {
             matchedList = myGeocoder.getFromLocationName(locationName, 1);
@@ -160,23 +161,39 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         LatLng locationDetails = new LatLng(lat,lon);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locationDetails));
     }
+
+    // Here is where I get the current location of the user (aka Last Known Location of device)
+
+    protected static final String TAG = "AttractionLocator";
+    /**
+     * Provides the entry point to Google Play services.
+     */
+    protected GoogleApiClient mGoogleApiClient;
+
+    /**
+     * Represents a geographical location.
+     */
+    protected Location mLastLocation;
+    protected double currentLat;
+    protected double currentLong;
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
     @Override
     public void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
     }
-
     @Override
     public void onStop() {
+        mGoogleApiClient.disconnect();
         super.onStop();
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
     }
-
-    /**
-     * Runs when a GoogleApiClient object successfully connects.
-     */
     @Override
     public void onConnected(Bundle connectionHint) {
         // Provides a simple way of getting a device's location and is well suited for
@@ -184,7 +201,8 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         // updates. Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
+        currentLat = mLastLocation.getLatitude();
+        currentLong = mLastLocation.getLongitude();
     }
 
     @Override
@@ -193,8 +211,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
-
-
     @Override
     public void onConnectionSuspended(int cause) {
         // The connection to Google Play services was lost for some reason. We call connect() to
@@ -202,5 +218,4 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,Go
         Log.i(TAG, "Connection suspended");
         mGoogleApiClient.connect();
     }
-
 }
