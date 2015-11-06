@@ -122,9 +122,10 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, G
 
         return dp[len1][len2];
     }
+    /*
     public void showSearchedLocation(GoogleMap googleMap){
         mMap = googleMap;
-        EditText lctString = (EditText) getView().findViewById(R.id.search_box); //getView() is correct?
+        EditText lctString = (EditText) getView().findViewById(R.id.search_box);
         String locationString = lctString.getText().toString();
         Geocoder myGeocoder = new Geocoder(getContext());
         List<Address> matchedList = null;

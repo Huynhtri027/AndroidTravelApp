@@ -1,9 +1,7 @@
 package com.sutd.zhangzhexian.travelapp;
 
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -182,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     rootView = inflater.inflate(R.layout.mapview, container, false);
                     break;
                 case 6:
-                    rootView = inflater.inflate(R.layout.myjournal, container, false);
+                    rootView = inflater.inflate(R.layout.activity_journal, container, false);
                     break;
                 case 7:
                     rootView = inflater.inflate(R.layout.picture_postcard, container, false);

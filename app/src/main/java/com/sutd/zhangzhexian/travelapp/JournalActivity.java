@@ -16,7 +16,7 @@ public class JournalActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.myjournal, container, false);
+        root = inflater.inflate(R.layout.activity_journal, container, false);
         return root;
     }
 }
