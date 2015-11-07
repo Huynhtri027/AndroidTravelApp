@@ -8,6 +8,8 @@ import com.sutd.zhangzhexian.travelapp.algorithm.model.Edge;
 import com.sutd.zhangzhexian.travelapp.algorithm.model.Graph;
 import com.sutd.zhangzhexian.travelapp.algorithm.model.Vertex;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +19,7 @@ public class TestDijkstraAlgorithm {
     private List<Vertex> nodes;
     private List<Edge> edges;
 
+    @Test
     public void testExcute() {
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();

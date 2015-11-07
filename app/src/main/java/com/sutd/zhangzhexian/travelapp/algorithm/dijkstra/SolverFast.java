@@ -4,9 +4,9 @@ package com.sutd.zhangzhexian.travelapp.algorithm.dijkstra;
  * Created by zhanghao on 6/11/15.
  */
 
-import com.algorithm.model.Edge;
-import com.algorithm.model.Graph;
-import com.algorithm.model.Vertex;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Edge;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Graph;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Vertex;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
