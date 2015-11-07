@@ -4,77 +4,82 @@ package com.sutd.zhangzhexian.travelapp.database;
  * Created by zhanghao on 7/11/15.
  */
 
-import com.sutd.zhangzhexian.travelapp.algorithm.model.Vertex;
 public class Data {
-    private double[][] walkTime={{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0},
-            {1.0, 0.0, 27.0, 18.0, 20.0, 19.0, 26.0, 10.0, 24.0},
-            {2.0, 27.0, 0.0, 56.0, 34.0, 9.0, 20.0, 7.0, 65.0},
-            {3.0, 18.0, 56.0, 0.0, 12.0, 67.0, 15.0, 12.0, 6.0},
-            {4.0, 20.0, 34.0, 12.0, 0.0, 13.0, 6.0, 25.0, 4.0},
-            {5.0, 19.0, 9.0, 67.0, 13.0, 0.0, 34.0, 23.0, 17.0},
-            {6.0, 26.0, 20.0, 15.0, 6.0, 34.0, 0.0, 17.0, 9.0},
-            {7.0, 10.0, 7.0, 12.0, 25.0, 23.0, 17.0, 0.0, 13.0},
-            {8.0, 24.0, 65.0, 6.0, 4.0, 17.0, 9.0, 13.0, 0.0}};
+    private String[] attractionNames;
+    public double[][] distance;
 
-    private double[][] publicTime={{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0},
-            {1.0, 0.0, 27.0, 18.0, 20.0, 19.0, 26.0, 10.0, 24.0},
-            {2.0, 27.0, 0.0, 56.0, 34.0, 9.0, 20.0, 7.0, 65.0},
-            {3.0, 18.0, 56.0, 0.0, 12.0, 67.0, 15.0, 12.0, 6.0},
-            {4.0, 20.0, 34.0, 12.0, 0.0, 13.0, 6.0, 25.0, 4.0},
-            {5.0, 19.0, 9.0, 67.0, 13.0, 0.0, 34.0, 23.0, 17.0},
-            {6.0, 26.0, 20.0, 15.0, 6.0, 34.0, 0.0, 17.0, 9.0},
-            {7.0, 10.0, 7.0, 12.0, 25.0, 23.0, 17.0, 0.0, 13.0},
-            {8.0, 24.0, 65.0, 6.0, 4.0, 17.0, 9.0, 13.0, 0.0}};
-
-    private double[][] taxiTime={{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0},
-            {1.0, 0.0, 27.0, 18.0, 20.0, 19.0, 26.0, 10.0, 24.0},
-            {2.0, 27.0, 0.0, 56.0, 34.0, 9.0, 20.0, 7.0, 65.0},
-            {3.0, 18.0, 56.0, 0.0, 12.0, 67.0, 15.0, 12.0, 6.0},
-            {4.0, 20.0, 34.0, 12.0, 0.0, 13.0, 6.0, 25.0, 4.0},
-            {5.0, 19.0, 9.0, 67.0, 13.0, 0.0, 34.0, 23.0, 17.0},
-            {6.0, 26.0, 20.0, 15.0, 6.0, 34.0, 0.0, 17.0, 9.0},
-            {7.0, 10.0, 7.0, 12.0, 25.0, 23.0, 17.0, 0.0, 13.0},
-            {8.0, 24.0, 65.0, 6.0, 4.0, 17.0, 9.0, 13.0, 0.0}};
-
-    private double[][] publicCost={{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0},
-            {1.0, 0.0, 27.0, 18.0, 20.0, 19.0, 26.0, 10.0, 24.0},
-            {2.0, 27.0, 0.0, 56.0, 34.0, 9.0, 20.0, 7.0, 65.0},
-            {3.0, 18.0, 56.0, 0.0, 12.0, 67.0, 15.0, 12.0, 6.0},
-            {4.0, 20.0, 34.0, 12.0, 0.0, 13.0, 6.0, 25.0, 4.0},
-            {5.0, 19.0, 9.0, 67.0, 13.0, 0.0, 34.0, 23.0, 17.0},
-            {6.0, 26.0, 20.0, 15.0, 6.0, 34.0, 0.0, 17.0, 9.0},
-            {7.0, 10.0, 7.0, 12.0, 25.0, 23.0, 17.0, 0.0, 13.0},
-            {8.0, 24.0, 65.0, 6.0, 4.0, 17.0, 9.0, 13.0, 0.0}};
-
-    private  double[][] taxiCost={{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0},
-            {1.0, 0.0, 27.0, 18.0, 20.0, 19.0, 26.0, 10.0, 24.0},
-            {2.0, 27.0, 0.0, 56.0, 34.0, 9.0, 20.0, 7.0, 65.0},
-            {3.0, 18.0, 56.0, 0.0, 12.0, 67.0, 15.0, 12.0, 6.0},
-            {4.0, 20.0, 34.0, 12.0, 0.0, 13.0, 6.0, 25.0, 4.0},
-            {5.0, 19.0, 9.0, 67.0, 13.0, 0.0, 34.0, 23.0, 17.0},
-            {6.0, 26.0, 20.0, 15.0, 6.0, 34.0, 0.0, 17.0, 9.0},
-            {7.0, 10.0, 7.0, 12.0, 25.0, 23.0, 17.0, 0.0, 13.0},
-            {8.0, 24.0, 65.0, 6.0, 4.0, 17.0, 9.0, 13.0, 0.0}};
-
-
-    public double getWalkTime(Vertex a,Vertex b){
-        //return walkTime.get(Integer.parseInt(a.getId().trim())).get(Integer.parseInt(b.getId().trim()));
-        return walkTime[Integer.parseInt(a.getId())][Integer.parseInt(b.getId())];
+    public Data(String[] attractionNames){
+        this.attractionNames=attractionNames;
+        this.attractionNames=this.sort(this.attractionNames);
+        distance=new double[attractionNames.length][attractionNames.length];
+        for (int i = 0; i < attractionNames.length; i++) {
+            this.distance[0][i]=(double)i;
+            this.distance[i][0]=(double)i;
+        }
+        for (int i = 1; i < attractionNames.length; i++) {
+            for (int j = 1; j < attractionNames.length; j++) {
+                distance[i][j]=DataBase.getDistance(DataBase.getAttractionId(attractionNames[i]),
+                                                    DataBase.getAttractionId(attractionNames[j]));
+            }
+        }
     }
 
-    public double getPublicTime(Vertex a, Vertex b) {
-        return publicTime[Integer.parseInt(a.getId())][Integer.parseInt(b.getId())];
+    private String[] sort(String[] attractionNames){
+        for (int i = 1; i < attractionNames.length; i++) {
+            for (int j = i+1; j < attractionNames.length ; j++) {
+                if (DataBase.getAttractionId(attractionNames[i])
+                        >DataBase.getAttractionId(attractionNames[j])){
+                    String temp=attractionNames[i];
+                    attractionNames[i]=attractionNames[j];
+                    attractionNames[j]=temp;
+                }
+            }
+        }
+        return attractionNames;
     }
 
-    public double getTaxiTime(Vertex a, Vertex b) {
-        return taxiTime[Integer.parseInt(a.getId())][Integer.parseInt(b.getId())];
+    public  double getWalkTime(int a,int b){
+        return distance[a][b]/3;
     }
 
-    public double getPublicCost(Vertex a, Vertex b) {
-        return publicCost[Integer.parseInt(a.getId())][Integer.parseInt(b.getId())];
+    public  double getPublicTime(int a, int b){
+        return distance[a][b]/15;
     }
 
-    public double getTaxiCost(Vertex a,Vertex b) {
-        return taxiCost[Integer.parseInt(a.getId())][Integer.parseInt(b.getId())];
+    public double getTaxiTime(int a,int b){
+        return distance[a][b]/40;
     }
+
+    public  double getPublicCost(int a,int b){
+        return 0.79+0.04*distance[a][b];
+    }
+
+    public double getTaxiCost(int a,int b){ return 2.2+0.8*(distance[a][b]-1); }
+
+
+    public String getAttractionNames(int a) {
+        return attractionNames[a];
+    }
+
+    public  int getNumberOfAttractions(){
+        return attractionNames.length-1;
+    }
+
+    public double getDistance(int a,int b){
+        return distance[a][b];
+    }
+
+    public int getAttractionId(String a){
+        for (int i = 1; i < attractionNames.length; i++){
+            if(a.equals(attractionNames[i])){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
+
+
+
 }
