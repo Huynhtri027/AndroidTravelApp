@@ -12,8 +12,7 @@ import com.sutd.zhangzhexian.travelapp.algorithm.nearestNeighbor.FastSolver;
  */
 public class Solver {
 
-    /**
-     * Last edited by Zhang Hao on 7/11/15.
+    /**Last edited by Zhang Hao on 7/11/15.
      *
      * To get a solution,use the following code:
      * Solver.getSolution(attractionList,budget);
@@ -34,13 +33,11 @@ public class Solver {
      *                       eg. attractionList={"nothing","place 1","place 2"...}
      * @param budget variable type double, the budget input.
      * @return update the new SolutionSet static class
-     *
-
      */
     public static SolutionSet getSolution(String[] attractionList,double budget){
 
         if (attractionList.length<10){
-            //Brute Force haven't implemented
+            // TODO: 7/11/15 brute force haven't implemented yet, use fast approximate instead temperately
             FastSolver.solve(attractionList,budget);
         }
         else{
@@ -49,8 +46,6 @@ public class Solver {
 
         return new SolutionSet();
     }
-
-
 
     //Test code
     /*public static void main(String[] args) {
