@@ -35,6 +35,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -63,9 +64,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        // I don't know if I need to do this
-        // mMap = mapFragment.getMap();
-        // will it return me a Google Map object that CAN update the map view?
         buildGoogleApiClient();
         mMap = mapFragment.getMap();
         Button button1 = (Button) root.findViewById(R.id.searchButton);
@@ -85,7 +83,9 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
                 double lat = matchedList.get(0).getLatitude();
                 double lon = matchedList.get(0).getLongitude();
                 LatLng locationDetails = new LatLng(lat,lon);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails,13));
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(locationDetails));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails,(float) 13.5));
             }
         });
 
@@ -95,15 +95,10 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        // Add a marker in MBS and move the camera
-        LatLng MBS = new LatLng(1.2826, 103.8584);
-        mMap.addMarker(new MarkerOptions().position(MBS).title("Marina Bay Sands"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MBS,13));
-        /*
         LatLng currentLocation = new LatLng(currentLat, currentLong);
-        mMap.addMarker(new MarkerOptions().position(MBS));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
-         */
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(currentLocation));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
     }
 
     public static int minDistance(String word1, String word2) {
@@ -165,25 +160,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
         Collections.sort(myList);
         return (String) balance.get(myList.get(0));
     }
-    // the onClick method that takes in the string in the searchbox and pass it to Geocode to look for Lat and Long
-    // then it will make a LatLng object to be used to update the map fragment.
-    /*
-    public void showSearchedLocation(){
-        EditText searchEditText = (EditText) getView().findViewById(R.id.searchBox);
-        String searchText = searchEditText.getText().toString();
-        String locationName = correctedSearch(searchText);
-        Geocoder myGeocoder = new Geocoder(getActivity(), Locale.getDefault());
-        List<Address> matchedList = null;
-        try {
-            matchedList = myGeocoder.getFromLocationName(locationName, 1);
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        double lat = matchedList.get(0).getLatitude();
-        double lon = matchedList.get(0).getLongitude();
-        LatLng locationDetails = new LatLng(lat,lon);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(locationDetails));
-    }*/
 
     // Here is where I get the current location of the user (aka Last Known Location of device)
 
