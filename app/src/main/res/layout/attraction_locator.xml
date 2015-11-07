@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:text="@string/search_button"
         android:id="@+id/searchButton"
-        android:onClick="showSearchedLocation"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

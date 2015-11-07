@@ -50,16 +50,10 @@ public class MapView extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(34, 117);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Beijing"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        LatLng beijing = new LatLng(67,88);
-        mMap.addMarker(new MarkerOptions().position(beijing).title("Somewhere"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(beijing));
-
-        mMap.addPolyline(new PolylineOptions());
+        mMap.setMyLocationEnabled(true);
+        // Add a marker in MBS and move the camera
+        LatLng MBS = new LatLng(1.2826, 103.8584);
+        mMap.addMarker(new MarkerOptions().position(MBS).title("Marina Bay Sands"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MBS,13));
     }
 }
