@@ -1,4 +1,4 @@
-package brain.dijkstra.model;
+package com.sutd.zhangzhexian.travelapp.algorithm.model;
 
 /**
  * Created by zhanghao on 5/11/15.

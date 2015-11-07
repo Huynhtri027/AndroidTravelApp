@@ -1,8 +1,13 @@
-package brain.dijkstra.engine;
+package com.sutd.zhangzhexian.travelapp.algorithm.dijkstra;
 
 /**
  * Created by zhanghao on 5/11/15.
  */
+
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Edge;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Graph;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Vertex;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,10 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import brain.dijkstra.model.Edge;
-import brain.dijkstra.model.Graph;
-import brain.dijkstra.model.Vertex;
 
 public class DijkstraAlgorithm {
 

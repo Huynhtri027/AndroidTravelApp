@@ -1,4 +1,4 @@
-package brain.dijkstra.model;
+package com.sutd.zhangzhexian.travelapp.algorithm.model;
 
 /**
  * Created by zhanghao on 5/11/15.
@@ -6,6 +6,9 @@ package brain.dijkstra.model;
 public class Vertex {
     final private String id;
     final private String name;
+
+//
+//    final private String type;
 
 
     public Vertex(String id, String name) {
@@ -19,6 +22,10 @@ public class Vertex {
     public String getName() {
         return name;
     }
+//    public String getType() {
+//        return type;
+//    }
+
 
     @Override
     public int hashCode() {
