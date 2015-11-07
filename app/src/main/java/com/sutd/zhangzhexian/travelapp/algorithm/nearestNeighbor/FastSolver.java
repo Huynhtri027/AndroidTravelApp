@@ -1,8 +1,7 @@
 package com.sutd.zhangzhexian.travelapp.algorithm.nearestNeighbor;
 
-import com.algorithm.model.SolutionSet;
-
-import database.Data;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.SolutionSet;
+import com.sutd.zhangzhexian.travelapp.database.Data;
 
 /**
  * Created by zhanghao on 7/11/15.
