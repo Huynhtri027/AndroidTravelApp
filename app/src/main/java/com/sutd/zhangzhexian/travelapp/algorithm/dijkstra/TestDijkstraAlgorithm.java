@@ -1,28 +1,22 @@
-package brain.dijkstra;
+package com.sutd.zhangzhexian.travelapp.algorithm.dijkstra;
 
 /**
  * Created by zhanghao on 5/11/15.
  */
-import org.junit.Test;
+
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Edge;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Graph;
+import com.sutd.zhangzhexian.travelapp.algorithm.model.Vertex;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import brain.dijkstra.engine.DijkstraAlgorithm;
-import brain.dijkstra.model.Edge;
-import brain.dijkstra.model.Graph;
-import brain.dijkstra.model.Vertex;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class TestDijkstraAlgorithm {
 
     private List<Vertex> nodes;
     private List<Edge> edges;
 
-    @Test
     public void testExcute() {
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
@@ -43,6 +37,7 @@ public class TestDijkstraAlgorithm {
         addLane("Edge_9", 4, 9, 502);
         addLane("Edge_10", 9, 10, 40);
         addLane("Edge_11", 1, 10, 600);
+        addLane("Edge_12",0,10,40);
 
         // Lets check from location Loc_1 to Loc_10
         Graph graph = new Graph(nodes, edges);
@@ -50,8 +45,8 @@ public class TestDijkstraAlgorithm {
         dijkstra.execute(nodes.get(0));
         LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
 
-        assertNotNull(path);
-        assertTrue(path.size() > 0);
+//        assertNotNull(path);
+//        assertTrue(path.size() > 0);
 
         for (Vertex vertex : path) {
             System.out.println(vertex);
