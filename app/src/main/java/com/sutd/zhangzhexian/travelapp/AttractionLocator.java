@@ -35,8 +35,8 @@ import java.util.Locale;
 /**
  * Created by Lakshita on 11/4/2015.
  */
-public class AttractionLocator extends Fragment implements OnMapReadyCallback,
-        ConnectionCallbacks, OnConnectionFailedListener {
+public class AttractionLocator extends Fragment implements OnMapReadyCallback
+/*  ,ConnectionCallbacks, OnConnectionFailedListener*/ {
 
     GoogleMap mMap;
     View root;
@@ -51,7 +51,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        buildGoogleApiClient();
+        //buildGoogleApiClient();
         mMap = mapFragment.getMap();
         Button button1 = (Button) root.findViewById(R.id.searchButton);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +81,9 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMyLocationEnabled(true);
-        LatLng currentLocation = new LatLng(currentLat, currentLong);
+        //mMap.setMyLocationEnabled(true);
+        //Set default current location to MBS
+        LatLng currentLocation = new LatLng(1.2826, 103.8584);
         mMap.clear();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
@@ -151,15 +152,16 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
 
     // Here is where I get the current location of the user (aka Last Known Location of device)
 
-    protected static final String TAG = "AttractionLocator";
-    /**
+    /*protected static final String TAG = "AttractionLocator";
+    *//**
      * Provides the entry point to Google Play services.
-     */
+     *//*
     protected GoogleApiClient mGoogleApiClient;
 
-    /**
+    *//**
      * Represents a geographical location.
-     */
+     *//*
+
     protected Location mLastLocation;
     protected double currentLat;
     protected double currentLong;
@@ -204,5 +206,5 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback,
         // attempt to re-establish the connection.
         Log.i(TAG, "Connection suspended");
         mGoogleApiClient.connect();
-    }
+    }*/
 }
