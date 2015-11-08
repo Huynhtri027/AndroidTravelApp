@@ -15,14 +15,11 @@ public class FastSolver {
         Route newRoute=new Route(listOfAttractions);
         SolutionSet.route=newRoute.getFollowedRouteString();
         SolutionSet.method=new String[listOfAttractions.length];
-        for (String l :SolutionSet.route) {
-            System.out.println(l);
-        }
 
         //get total distance
         for (int i = 0; i < SolutionSet.route.length-1; i++) {
             remainingDistance+= data.getDistance(data.getAttractionId(SolutionSet.route[i]),
-                                                data.getAttractionId(SolutionSet.route[i+1]));
+                    data.getAttractionId(SolutionSet.route[i+1]));
         }
 
         for (int i = 1; i < SolutionSet.route.length; i++) {
@@ -38,7 +35,7 @@ public class FastSolver {
                 remainingBudget-=data.getTaxiCost(data.getAttractionId(SolutionSet.route[i - 1]),
                         data.getAttractionId(SolutionSet.route[i]));
             }
-            else if(remainingBudget>2.04 &data.getPublicTime(data.getAttractionId(SolutionSet.route[i - 1]),
+            else if(data.getPublicCost(data.getAttractionId(SolutionSet.route[i - 1]),
                     data.getAttractionId(SolutionSet.route[i]))<remainingBudget){
                 //take public transport
                 SolutionSet.method[i]="public transport";
@@ -55,11 +52,12 @@ public class FastSolver {
             }
         }
         SolutionSet.cost=budget-remainingBudget;
+        SolutionSet.time/=60;
         return new SolutionSet();
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         String[] list={"nothing","Sentosa","Singapore Flyer","Vivo City"};
         solve(list,25);
         System.out.println("Start from "+SolutionSet.route[0]);
@@ -67,5 +65,5 @@ public class FastSolver {
             System.out.println(SolutionSet.method[i]+" to "+SolutionSet.route[i]);
         }
         System.out.println("cost:"+SolutionSet.cost+ "Time:"+SolutionSet.time);
-    }
+    }*/
 }

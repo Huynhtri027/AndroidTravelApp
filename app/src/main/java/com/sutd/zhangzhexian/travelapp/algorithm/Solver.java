@@ -11,7 +11,6 @@ import com.sutd.zhangzhexian.travelapp.algorithm.nearestNeighbor.FastSolver;
  * Created by Zhang Hao on 7/11/15.
  */
 public class Solver {
-
     /**Last edited by Zhang Hao on 7/11/15.
      *
      * To get a solution,use the following code:
@@ -35,7 +34,6 @@ public class Solver {
      * @return update the new SolutionSet static class
      */
     public static SolutionSet getSolution(String[] attractionList,double budget){
-
         if (attractionList.length<10){
             // TODO: 7/11/15 brute force haven't implemented yet, use fast approximate instead temperately
             FastSolver.solve(attractionList,budget);
@@ -43,10 +41,8 @@ public class Solver {
         else{
             FastSolver.solve(attractionList,budget);
         }
-
         return new SolutionSet();
     }
-
     //Test code
     /*public static void main(String[] args) {
         String[] list={"nothing","Sentosa","Singapore Flyer","Vivo City"};
