@@ -8,18 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Lakshita on 11/4/2015.
+ * Created by Lakshita on 11/8/2015.
  */
-public class PostcardActivity extends Fragment {
-
+public class Settings extends Fragment {
     View root;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.picture_postcard, container, false);
-
-
-
+        root = inflater.inflate(R.layout.settings, container, false);
         return root;
     }
 }

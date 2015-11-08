@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
 
@@ -54,19 +55,19 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 myFragment = new AttractionList();
                 break;
             case 2:
-                myFragment = new DailyItinerary();
-                break;
-            case 3:
                 myFragment = new AttractionLocator();
                 break;
-            case 4:
-                myFragment = new MapView();
+            case 3:
+                myFragment = new DailyItinerary();
                 break;
-            case 5:
+            case 4:
                 myFragment = new JournalActivity();
                 break;
-            case 6:
+            case 5:
                 myFragment = new PostcardActivity();
+                break;
+            case 6:
+                myFragment = new Settings();
                 break;
         }
         if (myFragment != null) {
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             case 7:
                 mTitle = getString(R.string.title_section7);
                 break;
+
         }
     }
 
@@ -171,19 +173,19 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     rootView = inflater.inflate(R.layout.attractions_list, container, false);
                     break;
                 case 3:
-                    rootView = inflater.inflate(R.layout.daily_itinerary, container, false);
-                    break;
-                case 4:
                     rootView = inflater.inflate(R.layout.attraction_locator, container, false);
                     break;
-                case 5:
-                    rootView = inflater.inflate(R.layout.mapview, container, false);
+                case 4:
+                    rootView = inflater.inflate(R.layout.daily_itinerary, container, false);
                     break;
-                case 6:
+                case 5:
                     rootView = inflater.inflate(R.layout.activity_journal, container, false);
                     break;
-                case 7:
+                case 6:
                     rootView = inflater.inflate(R.layout.picture_postcard, container, false);
+                    break;
+                case 7:
+                    rootView = inflater.inflate(R.layout.settings, container, false);
                     break;
                 default:
                     rootView = inflater.inflate(R.layout.login_page, container, false);

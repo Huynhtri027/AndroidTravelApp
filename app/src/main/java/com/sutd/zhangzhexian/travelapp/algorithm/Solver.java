@@ -11,6 +11,8 @@ import com.sutd.zhangzhexian.travelapp.algorithm.nearestNeighbor.FastSolver;
  * Created by Zhang Hao on 7/11/15.
  */
 public class Solver {
+
+
     /**Last edited by Zhang Hao on 7/11/15.
      *
      * To get a solution,use the following code:

@@ -9,6 +9,7 @@ public class Data {
     public double[][] distance;
     public double[][] walkTime;
     public double[][] taxiTime;
+    public double[][] publicTime;
 
     public Data(String[] attractionNames){
         this.attractionNames=attractionNames;
@@ -16,6 +17,7 @@ public class Data {
         distance=new double[attractionNames.length][attractionNames.length];
         walkTime=new double[attractionNames.length][attractionNames.length];
         taxiTime=new double[attractionNames.length][attractionNames.length];
+        publicTime=new double[attractionNames.length][attractionNames.length];
         for (int i = 0; i < attractionNames.length; i++) {
             this.distance[0][i]=(double)i;
             this.distance[i][0]=(double)i;
@@ -23,6 +25,8 @@ public class Data {
             this.walkTime[i][0]=(double)i;
             this.taxiTime[0][i]=(double)i;
             this.taxiTime[i][0]=(double)i;
+            this.publicTime[0][i]=(double)i;
+            this.publicTime[i][0]=(double)i;
         }
         for (int i = 1; i < attractionNames.length; i++) {
             for (int j = 1; j < attractionNames.length; j++) {
@@ -32,6 +36,9 @@ public class Data {
                         DataBase.getAttractionId(attractionNames[j]));
                 taxiTime[i][j] = DataBase.getTaxiTime(DataBase.getAttractionId(attractionNames[i]),
                         DataBase.getAttractionId(attractionNames[j]));
+                publicTime[i][j] = DataBase.getPublicTime(DataBase.getAttractionId(attractionNames[i]),
+                        DataBase.getAttractionId(attractionNames[j]));
+
             }
         }
     }
@@ -55,7 +62,7 @@ public class Data {
     }
 
     public  double getPublicTime(int a, int b){
-        return distance[a][b]/15*3600;
+        return publicTime[a][b];
     }
 
     public double getTaxiTime(int a,int b){
