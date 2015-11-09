@@ -1,5 +1,6 @@
 package com.sutd.zhangzhexian.travelapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -61,22 +62,37 @@ public class AttractionList extends Fragment implements View.OnClickListener {
     }
 
 
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        attractList.remove(position);
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onClick(View v) {
-
-
+        List = (ListView) root.findViewById(R.id.attractionList);
         List.setAdapter(adapter);
+        List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> a, View v, final int position, long id) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(root.getContext());
+                adb.setTitle("Delete");
+                adb.setMessage("Are you sure you want to delete?");
+                final int positionToRemove = position;
+                adb.setNegativeButton("Cancel", null);
+                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        attractList.remove(positionToRemove);
+                        adapter.remove(adapter.getItem(positionToRemove));
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                adb.show();
+            }
+        });
+
+
         switch (v.getId()) {
             case R.id.add:      //add button clicked
                 String searchText = Attraction.getText().toString();
                 String locationName = correctedSearch(searchText);
                 attractList.add(locationName);      //add attraction
                 adapter.add(locationName);
+                Attraction.setText("");
                 break;
 
             case R.id.generateIt:       //generate button clicked
