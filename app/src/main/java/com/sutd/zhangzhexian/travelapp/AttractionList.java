@@ -31,12 +31,12 @@ public class AttractionList extends Fragment implements View.OnClickListener {
 
     View root;
 
-    EditText Budget;
+    static EditText Budget;
     EditText Attraction;
     Button Add;
     Button Generate;
     ListView List;
-    List<String> attractList;
+    static List<String> attractList;
     ArrayAdapter<String> adapter;
     FrameLayout frame;
 
@@ -87,8 +87,6 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                         .replace(this.getId(), nextFrag ,null)
                         .addToBackStack(null)
                         .commit();
-
-
         }
     }
 
