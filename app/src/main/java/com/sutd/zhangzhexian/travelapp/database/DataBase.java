@@ -5,7 +5,7 @@ package com.sutd.zhangzhexian.travelapp.database;
  */
 public class DataBase {
 
-    private static String[] attractionNames=
+    public static String[] attractionNames=
             {"nothing","ArtScience Museum","Asian Civilisations Museum","Bukit Timah Nature Reserve","Changi Prison","Chinatown","Chinese Gardens","East Coast Park","Esplanade","Fort Canning Park","Gardens by the Bay",
                     "Haw Par Villa","Istana","Ion Orchard","Jurong Bird Park","Kranji War Memorial","Lau Pa Sat","Malay Heritage Centre","Malay Village","Marina Barrage",
                     "Marina Bay Sands","Merlion Park","Mount Faber Park","National Museum of Singapore","NUS","NEWater Visitor Centre","Old Parliament House","Pulau Ubin","Pasir Ris Park",
