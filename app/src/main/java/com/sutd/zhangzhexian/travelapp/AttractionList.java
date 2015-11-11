@@ -72,8 +72,8 @@ public class AttractionList extends Fragment implements View.OnClickListener {
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, final int position, long id) {
                 AlertDialog.Builder adb = new AlertDialog.Builder(root.getContext());
-                adb.setTitle("Delete");
-                adb.setMessage("Are you sure you want to delete?");
+                adb.setTitle("@string/delete");
+                adb.setMessage("@string/confirm_deletion");
                 final int positionToRemove = position;
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {

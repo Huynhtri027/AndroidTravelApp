@@ -29,6 +29,9 @@
     <string name="budget">Budget</string>
     <string name="enter_attraction">Enter an attraction</string>
     <string name="generate_itinerary">Generate itinerary</string>
+    <string name="delete">Delete</string>
+    <string name="confirm_deletion">Confirm deletion?</string>
+
 
 
 </resources>
