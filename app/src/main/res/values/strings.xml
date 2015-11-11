@@ -21,7 +21,7 @@
     <string name="title_activity_route_planning">Route Plan</string>
     <string name="search_button">Search</string>
     <string name="search_box_hint">Enter a location</string>
-    <string name="route">Planned Route</string>
+    <string name="route">Route</string>
     <string name="add">Add</string>
     <string name="change_view">Change View</string>
     <string name="itinerary">Itinerary</string>
