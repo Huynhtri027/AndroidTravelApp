@@ -32,12 +32,12 @@ public class AttractionList extends Fragment implements View.OnClickListener {
 
     View root;
 
-    EditText Budget;
+    static EditText Budget;
     EditText Attraction;
     Button Add;
     Button Generate;
     ListView List;
-    List<String> attractList;
+    static List<String> attractList;
     ArrayAdapter<String> adapter;
     FrameLayout frame;
 
@@ -92,7 +92,7 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                 String locationName = correctedSearch(searchText);
                 attractList.add(locationName);      //add attraction
                 adapter.add(locationName);
-                Attraction.setText("");
+                Attraction.setText(""); //this sets textbox to null
                 break;
 
             case R.id.generateIt:       //generate button clicked
@@ -103,8 +103,6 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                         .replace(this.getId(), nextFrag ,null)
                         .addToBackStack(null)
                         .commit();
-
-
         }
     }
 
