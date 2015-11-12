@@ -1,9 +1,12 @@
-package com.sutd.zhangzhexian.travelapp.supplementary;
+package com.sutd.zhangzhexian.travelapp.algorithm.supplementary;
 
+
+import com.sutd.zhangzhexian.travelapp.database.Data;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 
 /**
  * Created by zhanghao on 6/11/15.
@@ -14,11 +17,35 @@ public class FileReader {
         try {
             BufferedReader sc=new BufferedReader(new java.io.FileReader(file));
             String line;
+            int index=0;
+            int index2=2;
             while ((line = sc.readLine()) != null){
-                String[] info = line.split("\\s+");
-                for (int i = 1; i < info.length; i++) {
+                if(line.equals("NA")){
+                    if (index2==41 | index==0 ){
+                        index++;
+                        index2=index;
+                        ans[index][index]=0;
+                    }
+                    ans[index][index2]= Data.getDistance(index, index2)/20*3600;
+                    System.out.println(index+" "+index2+" "+ans[index][index2]);
+                    index2++;
+                }
+                else{
+                    String[] info = line.split("\\s+");
+                    if (index2==41 | index==0 ){
+                        index++;
+                        index2=index;
+                        ans[index][index]=0;
+                    }
+
+                    ans[index][index2]= Double.parseDouble(info[1]);
+//                    System.out.println(index+" "+index2+" "+ans[index][index2]);
+                    index2++;
+
+                /*for (int i = 1; i < info.length; i++) {
                     int index=Integer.parseInt(info[0]);
                     ans[index][i]=Double.parseDouble(info[i]);
+                }*/
                 }
             }
         } catch (FileNotFoundException e) {
@@ -31,7 +58,7 @@ public class FileReader {
 
     public static void main(String[] args) {
         String file="/Users/zhanghao/Desktop/WalkTime.txt";
-        int size=6;
+        int size=40;
         double[][] ans=read(file,size);
         for (int i = 0; i < ans.length; i++) {
             ans[i][0]=i;
@@ -39,7 +66,7 @@ public class FileReader {
         }
         for (int i = 0; i < ans.length; i++) {
             for (int j = 0; j < ans[0].length; j++) {
-                ans[i][j]=ans[j][i];
+                ans[j][i]=ans[i][j];
             }
         }
         System.out.print("{");

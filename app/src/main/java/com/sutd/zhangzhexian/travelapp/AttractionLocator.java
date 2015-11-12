@@ -1,10 +1,5 @@
 package com.sutd.zhangzhexian.travelapp;
 
-import com.google.android.gms.maps.model.PolylineOptions;
-import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_SATELLITE;
-import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_NORMAL;
-
-
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -22,8 +17,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.sutd.zhangzhexian.travelapp.algorithm.model.SolutionSet;
-import com.sutd.zhangzhexian.travelapp.database.DataBase;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.sutd.zhangzhexian.travelapp.database.Data;
+import com.sutd.zhangzhexian.travelapp.database.SolutionSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +27,9 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
+
+import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_NORMAL;
+import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_SATELLITE;
 
 /**
  * Created by Lakshita on 11/4/2015.
@@ -104,7 +103,11 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 AttractionList.attractList.add(locationName);
                 // re-solve using a new attractList
                 //TODO: perhaps this line below is wrong
-                DailyItinerary.setAttractionList(AttractionList.attractList.toArray(new String[AttractionList.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
+                try {
+                    DailyItinerary.setAttractionList(AttractionList.attractList.toArray(new String[AttractionList.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
                 showPolyline();
                 break;
 
@@ -127,11 +130,11 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     }
 
     public void showPolyline(){
-        for (int i=0; i<DailyItinerary.myRoute.route.length-1; i++){
+        for (int i=0; i< SolutionSet.route.length-1; i++){
 
             List<Address> place = null;
             try {
-                place = myGeocoder.getFromLocationName(DailyItinerary.myRoute.route[i], 1);
+                place = myGeocoder.getFromLocationName(SolutionSet.route[i], 1);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -181,9 +184,9 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
 
         ArrayList<Integer> myList = new ArrayList<>();
         Hashtable balance = new Hashtable();
-        for (int i=1; i < DataBase.attractionNames.length; i++){
-            int value = minDistance(search, DataBase.attractionNames[i]);
-            balance.put(value,DataBase.attractionNames[i]);
+        for (int i=1; i < Data.attractionNames.length; i++){
+            int value = minDistance(search, Data.attractionNames[i]);
+            balance.put(value,Data.attractionNames[i]);
             myList.add(value);
         }
         Collections.sort(myList);

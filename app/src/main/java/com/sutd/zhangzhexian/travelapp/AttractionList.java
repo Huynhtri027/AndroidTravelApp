@@ -1,9 +1,7 @@
 package com.sutd.zhangzhexian.travelapp;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,15 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import com.sutd.zhangzhexian.travelapp.database.DataBase;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -99,7 +90,11 @@ public class AttractionList extends Fragment implements View.OnClickListener {
 
             case R.id.generateIt:       //generate button clicked
                 //TODO: why don't you ask the program to produce a solution at the end of the add button like i do
-                DailyItinerary.setAttractionList(attractList.toArray(new String[attractList.size()]), Double.parseDouble(Budget.getText().toString()));
+                try {
+                    DailyItinerary.setAttractionList(attractList.toArray(new String[attractList.size()]), Double.parseDouble(Budget.getText().toString()));
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
 
                 DailyItinerary nextFrag= new DailyItinerary();
                 this.getFragmentManager().beginTransaction()

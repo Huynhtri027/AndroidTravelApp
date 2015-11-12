@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sutd.zhangzhexian.travelapp.algorithm.Solver;
-import com.sutd.zhangzhexian.travelapp.algorithm.model.SolutionSet;
+import com.sutd.zhangzhexian.travelapp.database.SolutionSet;
 
-import java.util.ArrayList;
+
 
 /**
  * Created by Lakshita on 11/4/2015.
@@ -26,7 +26,7 @@ public class DailyItinerary extends Fragment {
         return root;
     }
 
-    public static void setAttractionList(String[] solveList, double budget){
+    public static void setAttractionList(String[] solveList, double budget) throws CloneNotSupportedException {
         myRoute = Solver.getSolution(solveList, budget);
     }
 

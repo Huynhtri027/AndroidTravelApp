@@ -1,22 +1,20 @@
 package com.sutd.zhangzhexian.travelapp.algorithm;
 
-/**
- * Created by zhanghao on 7/11/15.
- */
-import com.sutd.zhangzhexian.travelapp.algorithm.model.SolutionSet;
-import com.sutd.zhangzhexian.travelapp.algorithm.nearestNeighbor.FastSolver;
 
+import com.sutd.zhangzhexian.travelapp.algorithm.fast.FastSolver;
+import com.sutd.zhangzhexian.travelapp.algorithm.slow.SlowSolver;
+import com.sutd.zhangzhexian.travelapp.database.SolutionSet;
 
 /**
  * Created by Zhang Hao on 7/11/15.
  */
 public class Solver {
 
-
-    /**Last edited by Zhang Hao on 7/11/15.
+    /**
+     * Last edited by Zhang Hao on 7/11/15.
      *
      * To get a solution,use the following code:
-     * Solver.getSolution(attractionList,budget);
+     * getSolution(attractionList,budget);
      *
      * The solution can be accessed using:
      * SolutionSet.route    the planned route in array form.
@@ -34,25 +32,36 @@ public class Solver {
      *                       eg. attractionList={"nothing","place 1","place 2"...}
      * @param budget variable type double, the budget input.
      * @return update the new SolutionSet static class
+     *
+
      */
-    public static SolutionSet getSolution(String[] attractionList,double budget){
-        if (attractionList.length<10){
-            // TODO: 7/11/15 brute force haven't implemented yet, use fast approximate instead temperately
-            FastSolver.solve(attractionList,budget);
+    public static SolutionSet getSolution(String[] attractionList,double budget) throws CloneNotSupportedException {
+
+        if (attractionList.length<8){
+            SlowSolver.solve(attractionList, budget);
+            System.out.println("Using Brute Force");
         }
         else{
-            FastSolver.solve(attractionList,budget);
+            FastSolver.solve(attractionList, budget);
+            System.out.println("Using Fast Approximate");
         }
+
+
         return new SolutionSet();
     }
+
+
+
     //Test code
-    /*public static void main(String[] args) {
-        String[] list={"nothing","Sentosa","Singapore Flyer","Vivo City"};
-        getSolution(list, 25);
+    public static void main(String[] args) throws CloneNotSupportedException {
+        String[] list={"nothing","Marina Bay Sands","Singapore Zoo","Haw Par Villa","Bukit Timah Nature Reserve","Changi Prison"};
+        getSolution(list, 30);
         System.out.println("Start from "+SolutionSet.route[0]);
         for (int i = 1; i < SolutionSet.route.length; i++) {
             System.out.println(SolutionSet.method[i]+" to "+SolutionSet.route[i]);
         }
-        System.out.println("cost:"+SolutionSet.cost+ "Time:"+SolutionSet.time);
-    }*/
+        System.out.println("cost:"+SolutionSet.cost+ "  Time:"+SolutionSet.time);
+
+
+    }
 }
