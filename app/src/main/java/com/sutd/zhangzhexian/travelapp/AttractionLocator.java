@@ -104,22 +104,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 AttractionList.attractList.add(locationName);
                 // re-solve using a new attractList
                 DailyItinerary.setAttractionList(AttractionList.attractList.toArray(new String[AttractionList.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
-                for (int i=0; i<DailyItinerary.myRoute.route.length-1; i++){
-
-                    List<Address> place = null;
-                    try {
-                        place = myGeocoder.getFromLocationName(DailyItinerary.myRoute.route[i], 1);
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    double latPlace = place.get(0).getLatitude();
-                    double lonPlace = place.get(0).getLongitude();
-                    LatLng placeDetails = new LatLng(latPlace, lonPlace);
-                    MarkerOptions anotherMarker = new MarkerOptions().position(placeDetails);
-                    mMap.addMarker(anotherMarker);
-                    routeLine.add(placeDetails);
-                }
-                mMap.addPolyline(routeLine);
+                showPolyline();
                 break;
 
             case R.id.change_view_button:
@@ -140,13 +125,32 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         }
     }
 
+    public void showPolyline(){
+        for (int i=0; i<DailyItinerary.myRoute.route.length-1; i++){
+
+            List<Address> place = null;
+            try {
+                place = myGeocoder.getFromLocationName(DailyItinerary.myRoute.route[i], 1);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+            double latPlace = place.get(0).getLatitude();
+            double lonPlace = place.get(0).getLongitude();
+            LatLng placeDetails = new LatLng(latPlace, lonPlace);
+            MarkerOptions anotherMarker = new MarkerOptions().position(placeDetails);
+            mMap.addMarker(anotherMarker);
+            routeLine.add(placeDetails);
+        }
+        mMap.addPolyline(routeLine);
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
+        mMap.setPadding(0,0,100,100);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
-        mMap.clear();
+        showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
     }
