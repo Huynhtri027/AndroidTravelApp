@@ -98,6 +98,7 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.generateIt:       //generate button clicked
+                //TODO: why don't you ask the program to produce a solution at the end of the add button like i do
                 DailyItinerary.setAttractionList(attractList.toArray(new String[attractList.size()]), Double.parseDouble(Budget.getText().toString()));
 
                 DailyItinerary nextFrag= new DailyItinerary();
