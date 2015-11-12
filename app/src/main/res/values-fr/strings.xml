@@ -4,11 +4,11 @@
     <string name="action_settings">Réglages</string>
     <string name="add">Ajouter</string>
     <string name="change_view">Modifier</string>
-    <string name="confirm_deletion">Confirmez l'effacement?</string>
+    <string name="confirm_deletion">Confirmez l\'effacement?</string>
     <string name="delete">Effacer</string>
     <string name="enter_attraction">Tapez un site à visiter</string>
     <string name="enter_budget">Tapez le budget</string>
-    <string name="generate_itinerary">Faire l'itinéraire</string>
+    <string name="generate_itinerary">Faire l\'itinéraire</string>
     <string name="hello_world">Bonjour le monde!</string>
     <string name="itinerary">itinéraire</string>
     <string name="route">Parcours</string>

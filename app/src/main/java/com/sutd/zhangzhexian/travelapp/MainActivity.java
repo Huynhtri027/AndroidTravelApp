@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {

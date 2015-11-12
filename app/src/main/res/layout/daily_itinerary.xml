@@ -5,10 +5,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Display Itinerary"
-        android:id="@+id/textView2"
+        android:text="Daily Itinerary"
+        android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="166dp" />
+        android:textSize="25dp"
+        android:textColor="#010101" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dailyList"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="42dp"
+        android:layout_alignParentEnd="true"
+        android:choiceMode="none" />
+
 </RelativeLayout>
