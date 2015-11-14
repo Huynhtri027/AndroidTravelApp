@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,17 +22,20 @@ import java.util.TimerTask;
 /**
  * Created by Lakshita on 11/4/2015.
  */
-public class JournalActivity extends Fragment {
+public class JournalActivity extends Fragment implements View.OnClickListener{
 
     View root;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.activity_journal, container, false);
+
         updateList();
+
         return root;
     }
-//    @Override
+
+    @Override
     public void onClick(View v) {
         //Opens the journal editor activity, which when opened is a blank journal because the "load" variable has not been changed
         SharedPreferences sharedpreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
@@ -85,11 +89,7 @@ public class JournalActivity extends Fragment {
 
         //set the onClickListener for the new journal button
         ImageButton imageButton = (ImageButton)root.findViewById(R.id.imageButton);
-
-        imageButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-            }
-        });
+        imageButton.setOnClickListener(this);
 
         final Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -135,4 +135,10 @@ public class JournalActivity extends Fragment {
 
     }
 
+
+
+
+
 }
+
+

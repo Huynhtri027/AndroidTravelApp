@@ -29,8 +29,8 @@ public class AttractionList extends Fragment implements View.OnClickListener {
     EditText Attraction;
     Button Add;
     Button Generate;
+    Button ClearAll;
     ListView List;
-    static List<String> attractList;
     ArrayAdapter<String> adapter;
     FrameLayout frame;
 
@@ -45,12 +45,12 @@ public class AttractionList extends Fragment implements View.OnClickListener {
         Attraction = (EditText) root.findViewById(R.id.attraction);
         Add = (Button) root.findViewById(R.id.add);
         Generate = (Button) root.findViewById(R.id.generateIt);
+        ClearAll = (Button) root.findViewById(R.id.clearbtn);
         List = (ListView) root.findViewById(R.id.attractionList);
-        attractList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_list_item_1);
         Add.setOnClickListener(this);
         Generate.setOnClickListener(this);
-
+        ClearAll.setOnClickListener(this);
         return root;
     }
 
@@ -63,13 +63,13 @@ public class AttractionList extends Fragment implements View.OnClickListener {
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, final int position, long id) {
                 AlertDialog.Builder adb = new AlertDialog.Builder(root.getContext());
-                adb.setTitle("@string/delete");
-                adb.setMessage("@string/confirm_deletion");
+                adb.setTitle("Delete");
+                adb.setMessage("Are you sure?");
                 final int positionToRemove = position;
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        attractList.remove(positionToRemove);
+                        MainActivity.attractList.remove(positionToRemove);
                         adapter.remove(adapter.getItem(positionToRemove));
                         adapter.notifyDataSetChanged();
                     }
@@ -83,24 +83,43 @@ public class AttractionList extends Fragment implements View.OnClickListener {
             case R.id.add:      //add button clicked
                 String searchText = Attraction.getText().toString();
                 String locationName = AttractionLocator.correctedSearch(searchText);
-                attractList.add(locationName);      //add attraction
+                MainActivity.attractList.add(locationName);      //add attraction
                 adapter.add(locationName);
                 Attraction.setText(""); //this sets textbox to null
+
                 break;
 
             case R.id.generateIt:       //generate button clicked
-                //TODO: why don't you ask the program to produce a solution at the end of the add button like i do
-                try {
-                    DailyItinerary.setAttractionList(attractList.toArray(new String[attractList.size()]), Double.parseDouble(Budget.getText().toString()));
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
+                if (MainActivity.attractList.isEmpty()){
+                    AlertDialog.Builder adb = new AlertDialog.Builder(root.getContext());
+                    adb.setTitle("Error");
+                    adb.setMessage("Minimum attractions enetered should be 2!");
+                    adb.setNegativeButton("OK, got it", null);
+                }
+                else {
+                    try {
+                        DailyItinerary.setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(Budget.getText().toString()));
+                    } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
+                    }
+                    DailyItinerary nextFrag = new DailyItinerary();
+                    this.getFragmentManager().beginTransaction()
+                            .replace(this.getId(), nextFrag, null)
+                            .addToBackStack(null)
+                            .commit();
                 }
 
-                DailyItinerary nextFrag= new DailyItinerary();
-                this.getFragmentManager().beginTransaction()
-                        .replace(this.getId(), nextFrag ,null)
-                        .addToBackStack(null)
-                        .commit();
+            case R.id.clearbtn:
+                MainActivity.attractList.clear();
+                adapter.clear();
+                adapter.notifyDataSetChanged();
+               /* int size = MainActivity.attractList.size();
+                for(int i=0;i<size;i++){
+                    MainActivity.attractList.remove(i);
+                    adapter.remove(adapter.getItem(i));
+                    adapter.notifyDataSetChanged();
+                }*/
+
         }
     }
 }

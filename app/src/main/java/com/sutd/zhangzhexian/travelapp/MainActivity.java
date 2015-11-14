@@ -24,6 +24,9 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
 
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
+    static List<String> attractList = new ArrayList<>();
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
+        attractList.add("Marina Bay Sands");
     }
 
 
@@ -90,9 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 break;
             case 5:
                 myFragment = new PostcardActivity();
-                break;
-            case 6:
-                myFragment = new Settings();
                 break;
         }
         if (myFragment != null) {
@@ -127,9 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             case 6:
                 mTitle = getString(R.string.title_section6);
                 break;
-            case 7:
-                mTitle = getString(R.string.title_section7);
-                break;
+
 
         }
     }
@@ -209,9 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 case 6:
                     rootView = inflater.inflate(R.layout.picture_postcard, container, false);
                     break;
-                case 7:
-                    rootView = inflater.inflate(R.layout.settings, container, false);
-                    break;
+
                 default:
                     rootView = inflater.inflate(R.layout.login_page, container, false);
             }

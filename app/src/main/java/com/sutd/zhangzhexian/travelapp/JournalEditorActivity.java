@@ -16,9 +16,6 @@ import android.widget.TextView;
 
 import java.util.Date;
 
-/**
- * Created by Zhang Zhexian on 14-Nov-15.
- */
 public class JournalEditorActivity extends AppCompatActivity {
 
     //Create an instance of the date in case this journal is new
@@ -165,6 +162,4 @@ public class JournalEditorActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
-
-
 
