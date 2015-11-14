@@ -156,8 +156,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         mMap.setPadding(0,0,100,100);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
-        if (MainActivity.attractList != null)
-            showPolyline();
+        showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
     }
