@@ -24,6 +24,9 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
 
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
+    static List<String> attractList = new ArrayList<>();
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
+        attractList.add("Marina Bay Sands");
     }
 
 

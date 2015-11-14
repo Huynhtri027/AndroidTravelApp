@@ -30,7 +30,6 @@ public class AttractionList extends Fragment implements View.OnClickListener {
     Button Add;
     Button Generate;
     ListView List;
-    static List<String> attractList;
     ArrayAdapter<String> adapter;
     FrameLayout frame;
 
@@ -46,7 +45,6 @@ public class AttractionList extends Fragment implements View.OnClickListener {
         Add = (Button) root.findViewById(R.id.add);
         Generate = (Button) root.findViewById(R.id.generateIt);
         List = (ListView) root.findViewById(R.id.attractionList);
-        attractList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_list_item_1);
         Add.setOnClickListener(this);
         Generate.setOnClickListener(this);
@@ -69,7 +67,7 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        attractList.remove(positionToRemove);
+                        MainActivity.attractList.remove(positionToRemove);
                         adapter.remove(adapter.getItem(positionToRemove));
                         adapter.notifyDataSetChanged();
                     }
@@ -83,15 +81,14 @@ public class AttractionList extends Fragment implements View.OnClickListener {
             case R.id.add:      //add button clicked
                 String searchText = Attraction.getText().toString();
                 String locationName = AttractionLocator.correctedSearch(searchText);
-                attractList.add(locationName);      //add attraction
+                MainActivity.attractList.add(locationName);      //add attraction
                 adapter.add(locationName);
                 Attraction.setText(""); //this sets textbox to null
                 break;
 
             case R.id.generateIt:       //generate button clicked
-                //TODO: why don't you ask the program to produce a solution at the end of the add button like i do
                 try {
-                    DailyItinerary.setAttractionList(attractList.toArray(new String[attractList.size()]), Double.parseDouble(Budget.getText().toString()));
+                    DailyItinerary.setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(Budget.getText().toString()));
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }

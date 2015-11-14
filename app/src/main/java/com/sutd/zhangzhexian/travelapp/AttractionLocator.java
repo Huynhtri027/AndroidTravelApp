@@ -22,6 +22,7 @@ import com.sutd.zhangzhexian.travelapp.database.Data;
 import com.sutd.zhangzhexian.travelapp.database.SolutionSet;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -100,10 +101,10 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 searchEditText = (EditText) getView().findViewById(R.id.search_box);
                 searchText = searchEditText.getText().toString();
                 locationName = correctedSearch(searchText);
-                AttractionList.attractList.add(locationName);
+                MainActivity.attractList.add(locationName);
                 // re-solve using a new attractList
                 try {
-                    DailyItinerary.setAttractionList(AttractionList.attractList.toArray(new String[AttractionList.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
+                    DailyItinerary.setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
@@ -129,7 +130,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     }
 
     public void showPolyline(){
-        for (int i=0; i< SolutionSet.route.length-1; i++){
+        for (int i=0; i< DailyItinerary.myRoute.route.length; i++){
 
             List<Address> place = null;
             try {
@@ -145,7 +146,8 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
             mMap.addMarker(anotherMarker);
             routeLine.add(placeDetails);
         }
-        mMap.addPolyline(routeLine);
+        if (Array.getLength(MainActivity.attractList)>1)
+            mMap.addPolyline(routeLine);
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -154,7 +156,8 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         mMap.setPadding(0,0,100,100);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
-        showPolyline();
+        if (MainActivity.attractList != null)
+            showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
     }
