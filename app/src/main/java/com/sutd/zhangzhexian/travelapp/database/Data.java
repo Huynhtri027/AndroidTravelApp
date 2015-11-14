@@ -207,10 +207,6 @@ public class Data {
         public static double getTaxiCost(int a,int b){ return 2.2+0.8*(distance[a][b]-1); }
 
 
-    public static String getAttractionNames(int a) {
-        return attractionNames[a];
-    }
-
     public static int getAttractionId(String a){
         for (int i = 1; i < attractionNames.length; i++){
             if(a.equals(attractionNames[i])){
@@ -218,9 +214,5 @@ public class Data {
             }
         }
         return 0;
-    }
-
-    public static int getNumberOfAttractions(){
-        return attractionNames.length-1;
     }
 }

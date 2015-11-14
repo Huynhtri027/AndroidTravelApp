@@ -27,7 +27,16 @@ public class DailyItinerary extends Fragment {
     }
 
     public static void setAttractionList(String[] solveList, double budget) throws CloneNotSupportedException {
-        myRoute = Solver.getSolution(solveList, budget);
+        /**
+         * modified list add in Marina Bay Sands as start point  --Zhang Hao
+         * */
+        String[] modifiedSolveList=new String[solveList.length+1];
+        modifiedSolveList[0]=solveList[0];
+        modifiedSolveList[1]="Marina Bay Sands";
+        for (int i = 1; i < solveList.length; i++) {
+            modifiedSolveList[i+1]=solveList[i];
+        }
+        myRoute = Solver.getSolution(modifiedSolveList, budget);
     }
 
 
