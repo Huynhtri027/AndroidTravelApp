@@ -102,7 +102,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 locationName = correctedSearch(searchText);
                 AttractionList.attractList.add(locationName);
                 // re-solve using a new attractList
-                //TODO: perhaps this line below is wrong
                 try {
                     DailyItinerary.setAttractionList(AttractionList.attractList.toArray(new String[AttractionList.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
                 } catch (CloneNotSupportedException e) {
@@ -134,7 +133,8 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
 
             List<Address> place = null;
             try {
-                place = myGeocoder.getFromLocationName(SolutionSet.route[i], 1);
+                String correctedNameInSingapore = SolutionSet.route[i] + " Singapore";
+                place = myGeocoder.getFromLocationName(correctedNameInSingapore, 1);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
