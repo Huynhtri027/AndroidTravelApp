@@ -16,7 +16,7 @@ parent="@style/Theme.AppCompat.Light.DarkActionBar">
 <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
 <item name="actionMenuTextColor">@color/actionbar_text</item>
 </style>
- 
+
 <!-- ActionBar styles -->
 <style name="MyActionBar"
 parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse" >
@@ -41,5 +41,7 @@ parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
 parent="@style/Widget.AppCompat.ActionBar.TabText">
 <item name="android:textColor">@color/actionbar_text</item>
 </style>
+
+
  
 </resources>
