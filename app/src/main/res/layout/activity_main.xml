@@ -23,20 +23,22 @@
         android:layout_gravity="start" android:name="com.sutd.zhangzhexian.travelapp.NavigationDrawerFragment"
         tools:layout="@layout/fragment_navigation_drawer" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/info"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:textSize="18sp"
-        />
+    <!--TODO: Facebook Login &#45;&#45; uncomment the following (3 of 3)-->
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/info"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:textSize="18sp"-->
+        <!--/>-->
+
+    <!--<com.facebook.login.widget.LoginButton-->
+        <!--android:id="@+id/login_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--/>-->
 
 </android.support.v4.widget.DrawerLayout>

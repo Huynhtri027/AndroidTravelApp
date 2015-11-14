@@ -42,17 +42,18 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-//        CallbackManager.Factory.create();
+
+//        TODO: Facebook Login -- uncomment the following (1 of 3)
+        //FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
-        info = (TextView)findViewById(R.id.info);
-        loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onFblogin();
-            }
-        });
+//        info = (TextView)findViewById(R.id.info);
+//        loginButton = (LoginButton)findViewById(R.id.login_button);
+//        loginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onFblogin();
+//            }
+//        });
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -225,37 +226,39 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
     }
 
-    private void onFblogin(){
-        callbackManager = CallbackManager.Factory.create();
+    //        TODO: Facebook Login -- uncomment the following (2 of 3)
 
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                info.setText(
-                        "User ID: "
-                                + loginResult.getAccessToken().getUserId()
-                                + "\n" +
-                                "Auth Token: "
-                                + loginResult.getAccessToken().getToken()
-                );
-            }
-
-            @Override
-            public void onCancel() {
-                info.setText("Login attempt canceled.");
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-                info.setText("Login attempt failed.");
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode,resultCode,data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+//    private void onFblogin(){
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                info.setText(
+//                        "User ID: "
+//                                + loginResult.getAccessToken().getUserId()
+//                                + "\n" +
+//                                "Auth Token: "
+//                                + loginResult.getAccessToken().getToken()
+//                );
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                info.setText("Login attempt canceled.");
+//            }
+//
+//            @Override
+//            public void onError(FacebookException e) {
+//                info.setText("Login attempt failed.");
+//            }
+//        });
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode,resultCode,data);
+//        callbackManager.onActivityResult(requestCode, resultCode, data);
+//    }
 
 }
