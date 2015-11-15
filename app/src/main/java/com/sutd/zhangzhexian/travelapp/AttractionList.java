@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,10 +81,12 @@ public class AttractionList extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.add:      //add button clicked
                 String searchText = Attraction.getText().toString();
-                String locationName = AttractionLocator.correctedSearch(searchText);
-                MainActivity.attractList.add(locationName);      //add attraction
-                adapter.add(locationName);
-                Attraction.setText(""); //this sets textbox to null
+                if (!searchText.equals("")){
+                    String locationName = AttractionLocator.correctedSearch(searchText);
+                    MainActivity.attractList.add(locationName);      //add attraction
+                    adapter.add(locationName);
+                    Attraction.setText(""); //this sets textbox to null
+                }
                 break;
 
             case R.id.generateIt:       //generate button clicked

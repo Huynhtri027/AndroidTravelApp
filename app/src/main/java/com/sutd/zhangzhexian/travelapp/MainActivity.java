@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    static List<String> attractList = new ArrayList<>();
+    static ArrayList<String> attractList = new ArrayList<>();
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
