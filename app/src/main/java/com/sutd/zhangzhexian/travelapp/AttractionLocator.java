@@ -159,7 +159,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         if (MainActivity.attractList != null)
             showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.6));
     }
 
     public static int minDistance(String a, String b) {
