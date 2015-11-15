@@ -74,6 +74,11 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         itinerary = (Button) root.findViewById(R.id.itinerary);
         itinerary.setOnClickListener(this);
 
+        if (MainActivity.attractList.isEmpty()){
+            MainActivity.attractList.add("nothing");
+            MainActivity.attractList.add("Marina Bay Sands");
+        }
+
         return root;
     }
 
@@ -99,10 +104,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 break;
 
             case R.id.add_button:
-                if (MainActivity.attractList.isEmpty()){
-                    MainActivity.attractList.add("nothing");
-                    MainActivity.attractList.add("Marina Bay Sands");
-                }
                 searchEditText = (EditText) getView().findViewById(R.id.search_box);
                 searchText = searchEditText.getText().toString();
                 locationName = correctedSearch(searchText);
@@ -117,6 +118,9 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 };
+                if (SolutionSet.route != null)
+                    showPolyline();
+                break;
 
             case R.id.change_view_button:
                 if (n==0)
@@ -163,7 +167,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         mMap.setPadding(0,0,300,0);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
-        if (MainActivity.attractList != null)
+        if (SolutionSet.route != null)
             showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.6));
