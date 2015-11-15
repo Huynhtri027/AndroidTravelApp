@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,12 +18,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.sutd.zhangzhexian.travelapp.algorithm.Solver;
 import com.sutd.zhangzhexian.travelapp.database.Data;
 import com.sutd.zhangzhexian.travelapp.database.SolutionSet;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -47,7 +44,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     String searchText;
     EditText searchEditText;
     Button search_button;
-    Button add_button;
     Button change_view_button;
     Button itinerary;
     GoogleMap mMap;
@@ -84,24 +80,23 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_button:
-                try {
-                    searchEditText = (EditText) getView().findViewById(R.id.search_box);
-                    searchText = searchEditText.getText().toString();
+                searchEditText = (EditText) getView().findViewById(R.id.search_box);
+                searchText = searchEditText.getText().toString();
+                if (searchText != null && !searchText.isEmpty() && !searchText.trim().isEmpty()){
                     locationName = correctedSearch(searchText);
                     List<Address> matchedList = null;
                     try {
-                        matchedList = myGeocoder.getFromLocationName(locationName, 1);
+                        String locationName1 = locationName + " Singapore";
+                        matchedList = myGeocoder.getFromLocationName(locationName1, 1);
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
                     double lat = matchedList.get(0).getLatitude();
                     double lon = matchedList.get(0).getLongitude();
                     LatLng locationDetails = new LatLng(lat, lon);
-                    marker = new MarkerOptions().position(locationDetails);
+                    marker = new MarkerOptions().position(locationDetails).title(locationName);
                     mMap.addMarker(marker);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails, (float) 14));
-                } catch (NullPointerException ex){
-                    Toast.makeText(getActivity(), "You did not type anything!", Toast.LENGTH_SHORT).show();
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails,13));
                 }
                 break;
 
@@ -147,7 +142,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0,300,0,0);
+        mMap.setPadding(0,200,0,0);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
         if (SolutionSet.route != null)
