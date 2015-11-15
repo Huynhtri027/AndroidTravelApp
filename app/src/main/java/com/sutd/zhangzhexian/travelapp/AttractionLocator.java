@@ -98,16 +98,16 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 break;
 
             case R.id.add_button:
+                if (MainActivity.attractList.isEmpty()){
+                    MainActivity.attractList.add("nothing");
+                    MainActivity.attractList.add("Marina Bay Sands");
+                }
                 searchEditText = (EditText) getView().findViewById(R.id.search_box);
                 searchText = searchEditText.getText().toString();
                 locationName = correctedSearch(searchText);
                 MainActivity.attractList.add(locationName);
                 // re-solve using a new attractList
-                try {
-                    DailyItinerary.setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                }
+
                 showPolyline();
                 break;
 
@@ -146,7 +146,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
             mMap.addMarker(anotherMarker);
             routeLine.add(placeDetails);
         }
-        if (Array.getLength(MainActivity.attractList)>1)
+        if (MainActivity.attractList.size()>1 && MainActivity.attractList!=null)
             mMap.addPolyline(routeLine);
     }
     @Override
