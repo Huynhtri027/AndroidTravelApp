@@ -51,7 +51,7 @@ public class Solver {
     }
 
 
-
+/*
     //Test code
     public static void main(String[] args) throws CloneNotSupportedException {
         String[] list={"nothing","Marina Bay Sands","Singapore Zoo","Haw Par Villa","Bukit Timah Nature Reserve","Changi Prison"};
@@ -63,5 +63,5 @@ public class Solver {
         System.out.println("cost:"+SolutionSet.cost+ "  Time:"+SolutionSet.time);
 
 
-    }
+    }*/
 }

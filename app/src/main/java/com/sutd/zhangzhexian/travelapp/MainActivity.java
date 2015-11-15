@@ -94,9 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             case 5:
                 myFragment = new PostcardActivity();
                 break;
-            case 6:
-                myFragment = new Settings();
-                break;
         }
         if (myFragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -130,9 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             case 6:
                 mTitle = getString(R.string.title_section6);
                 break;
-            case 7:
-                mTitle = getString(R.string.title_section7);
-                break;
+
 
         }
     }
@@ -212,9 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 case 6:
                     rootView = inflater.inflate(R.layout.picture_postcard, container, false);
                     break;
-                case 7:
-                    rootView = inflater.inflate(R.layout.settings, container, false);
-                    break;
+
                 default:
                     rootView = inflater.inflate(R.layout.login_page, container, false);
             }
