@@ -63,9 +63,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         myGeocoder = new Geocoder(getActivity(), Locale.getDefault());
         mMap = mapFragment.getMap();
 
-        add_button = (Button) root.findViewById(R.id.add_button);
-        add_button.setOnClickListener(this);
-
         search_button = (Button) root.findViewById(R.id.search_button);
         search_button.setOnClickListener(this);
 
