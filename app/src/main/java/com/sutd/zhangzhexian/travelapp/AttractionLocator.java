@@ -15,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -145,10 +146,18 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         mMap.setMyLocationEnabled(true);
         mMap.setPadding(0,200,0,0);
         //Set default current location to MBS
-        LatLng currentLocation = new LatLng(1.2826, 103.8584);
+        List<Address> matchedList = null;
+        try {
+            matchedList = myGeocoder.getFromLocationName("Marina Bay Sands", 1);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        double lat = matchedList.get(0).getLatitude();
+        double lon = matchedList.get(0).getLongitude();
+        LatLng currentLocation = new LatLng(lat, lon);
         if (SolutionSet.route != null)
             showPolyline();
-        mMap.addMarker(new MarkerOptions().position(currentLocation));
+        mMap.addMarker(new MarkerOptions().position(currentLocation).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.6));
     }
 
