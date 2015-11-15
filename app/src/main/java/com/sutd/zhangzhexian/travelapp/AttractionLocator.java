@@ -86,8 +86,8 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                     locationName = correctedSearch(searchText);
                     List<Address> matchedList = null;
                     try {
-                        locationName = locationName + " Singapore";
-                        matchedList = myGeocoder.getFromLocationName(locationName, 1);
+                        String locationName1 = locationName + " Singapore";
+                        matchedList = myGeocoder.getFromLocationName(locationName1, 1);
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
