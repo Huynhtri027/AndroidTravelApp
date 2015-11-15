@@ -153,7 +153,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0,0,100,100);
+        mMap.setPadding(0,0,300,0);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
         if (MainActivity.attractList != null)
