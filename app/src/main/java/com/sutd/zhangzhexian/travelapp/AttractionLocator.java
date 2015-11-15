@@ -82,7 +82,7 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
             case R.id.search_button:
                 searchEditText = (EditText) getView().findViewById(R.id.search_box);
                 searchText = searchEditText.getText().toString();
-                if (!searchText.equals("")){
+                if (searchText != null && !searchText.isEmpty() && !searchText.trim().isEmpty()){
                     locationName = correctedSearch(searchText);
                     List<Address> matchedList = null;
                     try {
