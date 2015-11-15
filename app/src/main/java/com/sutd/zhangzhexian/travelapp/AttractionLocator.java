@@ -108,29 +108,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 }
                 break;
 
-            case R.id.add_button:
-                try {
-                    searchEditText = (EditText) getView().findViewById(R.id.search_box);
-                    searchText = searchEditText.getText().toString();
-                    locationName = correctedSearch(searchText);
-                    MainActivity.attractList.add(locationName);
-                    // re-solve using a new attractList
-                    try {
-                        String[] solveList = MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]);
-                        double budget = Double.parseDouble(AttractionList.Budget.getText().toString());
-                        Solver.getSolution(solveList, budget);
-                        //setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
-                    } catch (CloneNotSupportedException e) {
-                        e.printStackTrace();
-                    };
-                    if (SolutionSet.route != null)
-                        showPolyline();
-                } catch (NullPointerException ex){
-                    Toast.makeText(getActivity(), "You did not type anything!", Toast.LENGTH_SHORT).show();
-                }
-
-                break;
-
             case R.id.change_view_button:
                 if (n==0)
                     mMap.setMapType(MAP_TYPE_SATELLITE);
