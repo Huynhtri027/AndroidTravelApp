@@ -90,11 +90,12 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.generateIt:       //generate button clicked
-                if (MainActivity.attractList.isEmpty()){
+                if (MainActivity.attractList.isEmpty()||MainActivity.attractList.size()<2){
                     AlertDialog.Builder adb = new AlertDialog.Builder(root.getContext());
                     adb.setTitle("Error");
                     adb.setMessage("Minimum attractions enetered should be 2!");
                     adb.setNegativeButton("OK, got it", null);
+                    adb.show();
                 }
                 else {
                     try {
@@ -108,6 +109,7 @@ public class AttractionList extends Fragment implements View.OnClickListener {
                             .addToBackStack(null)
                             .commit();
                 }
+                break;
 
             case R.id.clearbtn:
                 MainActivity.attractList.clear();
