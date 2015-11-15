@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -99,24 +98,17 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                 break;
 
             case R.id.add_button:
+                if (MainActivity.attractList.isEmpty()){
+                    MainActivity.attractList.add("nothing");
+                    MainActivity.attractList.add("Marina Bay Sands");
+                }
                 searchEditText = (EditText) getView().findViewById(R.id.search_box);
                 searchText = searchEditText.getText().toString();
-                if (!searchText.equals("")){
-                    locationName = correctedSearch(searchText);
-                    MainActivity.attractList.add(locationName);
-                    // re-solve using a new attractList
-                    try {
-                        DailyItinerary.setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
-                    } catch (CloneNotSupportedException e) {
-                        e.printStackTrace();
-                    } catch (NullPointerException e){
-                        Toast.makeText(getActivity(), "Please go to Attraction List to set a budget", Toast.LENGTH_SHORT).show();
-                    }
-                    if (DailyItinerary.myRoute != null)
-                        showPolyline();
-                } else {
-                    Toast.makeText(getActivity(), "You have not chosen any location!", Toast.LENGTH_SHORT).show();
-                }
+                locationName = correctedSearch(searchText);
+                MainActivity.attractList.add(locationName);
+                // re-solve using a new attractList
+
+                showPolyline();
                 break;
 
             case R.id.change_view_button:
@@ -154,17 +146,17 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
             mMap.addMarker(anotherMarker);
             routeLine.add(placeDetails);
         }
-        if (MainActivity.attractList.size()>1)
+        if (MainActivity.attractList.size()>1 && MainActivity.attractList!=null)
             mMap.addPolyline(routeLine);
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0,300,0,0);
+        mMap.setPadding(0,0,100,100);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
-        if (DailyItinerary.myRoute != null)
+        if (MainActivity.attractList != null)
             showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.5));
