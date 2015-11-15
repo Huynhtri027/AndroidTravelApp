@@ -58,7 +58,7 @@ public class AttractionList extends Fragment implements View.OnClickListener {
         MainActivity.attractList.add("nothing");
         MainActivity.attractList.add("Marina Bay Sands");
         adapter.add("Marina Bay Sands");
-        //adapter.notifyDataSetChanged();
+
         Add.setOnClickListener(this);
         Generate.setOnClickListener(this);
         ClearAll.setOnClickListener(this);
