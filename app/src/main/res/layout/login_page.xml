@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/imageView"
-        android:background="@drawable/paris"
+        android:background="@drawable/sg"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true" />
