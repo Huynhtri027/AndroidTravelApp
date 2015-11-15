@@ -3,6 +3,8 @@ package com.sutd.zhangzhexian.travelapp.algorithm;
 
 import com.sutd.zhangzhexian.travelapp.algorithm.fast.FastSolver;
 import com.sutd.zhangzhexian.travelapp.algorithm.slow.SlowSolver;
+import com.sutd.zhangzhexian.travelapp.database.Methods;
+import com.sutd.zhangzhexian.travelapp.database.Permutations;
 import com.sutd.zhangzhexian.travelapp.database.SolutionSet;
 
 /**
@@ -37,19 +39,20 @@ public class Solver {
      */
     public static SolutionSet getSolution(String[] attractionList,double budget) throws CloneNotSupportedException {
 
+        SolutionSet.clear();
+        Permutations.clear();
+        Methods.clear();
+
         if (attractionList.length<8){
             SlowSolver.solve(attractionList, budget);
-            System.out.println("Using Brute Force");
+            //System.out.println("Using Brute Force");
         }
         else{
             FastSolver.solve(attractionList, budget);
-            System.out.println("Using Fast Approximate");
+            //System.out.println("Using Fast Approximate");
         }
-
-
         return new SolutionSet();
     }
-
 
 /*
     //Test code
@@ -61,7 +64,5 @@ public class Solver {
             System.out.println(SolutionSet.method[i]+" to "+SolutionSet.route[i]);
         }
         System.out.println("cost:"+SolutionSet.cost+ "  Time:"+SolutionSet.time);
-
-
     }*/
 }

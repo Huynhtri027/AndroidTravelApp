@@ -2,4 +2,93 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:background="@drawable/paris"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Hi, Tell me your Name"
+        android:textColor="@color/actionbar_background"
+        android:textStyle="bold"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="95dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColor="@color/text1"
+        android:textStyle="bold"
+        android:ems="10"
+        android:id="@+id/userName"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Country you are From"
+        android:textColor="@color/actionbar_background"
+        android:textStyle="bold"
+        android:id="@+id/textView4"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/userName"
+        android:layout_alignStart="@+id/userCountry" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/userCountry"
+        android:textColor="@color/text1"
+        android:textStyle="bold"
+        android:layout_marginRight="45dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="What is your Age?"
+        android:textColor="@color/actionbar_background"
+        android:textStyle="bold"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/userCountry"
+        android:layout_alignStart="@+id/userCountry"
+        android:layout_marginTop="27dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userAge"
+        android:textColor="@color/text1"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView5"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let&apos;s TRAVEL >>"
+        android:id="@+id/travel"
+        android:background="@color/text1"
+        android:layout_below="@+id/userAge"
+        android:layout_marginTop="33dp"
+        android:layout_alignStart="@+id/userName"
+        android:layout_alignEnd="@+id/userName" />
+
 </RelativeLayout>

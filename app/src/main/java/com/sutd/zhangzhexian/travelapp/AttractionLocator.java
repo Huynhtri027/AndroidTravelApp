@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -62,9 +63,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         myGeocoder = new Geocoder(getActivity(), Locale.getDefault());
         mMap = mapFragment.getMap();
 
-        add_button = (Button) root.findViewById(R.id.add_button);
-        add_button.setOnClickListener(this);
-
         search_button = (Button) root.findViewById(R.id.search_button);
         search_button.setOnClickListener(this);
 
@@ -74,6 +72,11 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
         itinerary = (Button) root.findViewById(R.id.itinerary);
         itinerary.setOnClickListener(this);
 
+        if (MainActivity.attractList.isEmpty()){
+            MainActivity.attractList.add("nothing");
+            MainActivity.attractList.add("Marina Bay Sands");
+        }
+
         return root;
     }
 
@@ -81,42 +84,26 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_button:
-                searchEditText = (EditText) getView().findViewById(R.id.search_box);
-                searchText = searchEditText.getText().toString();
-                locationName = correctedSearch(searchText);
-                List<Address> matchedList = null;
                 try {
-                    matchedList = myGeocoder.getFromLocationName(locationName, 1);
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
+                    searchEditText = (EditText) getView().findViewById(R.id.search_box);
+                    searchText = searchEditText.getText().toString();
+                    locationName = correctedSearch(searchText);
+                    List<Address> matchedList = null;
+                    try {
+                        matchedList = myGeocoder.getFromLocationName(locationName, 1);
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    double lat = matchedList.get(0).getLatitude();
+                    double lon = matchedList.get(0).getLongitude();
+                    LatLng locationDetails = new LatLng(lat, lon);
+                    marker = new MarkerOptions().position(locationDetails);
+                    mMap.addMarker(marker);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails, (float) 14));
+                } catch (NullPointerException ex){
+                    Toast.makeText(getActivity(), "You did not type anything!", Toast.LENGTH_SHORT).show();
                 }
-                double lat = matchedList.get(0).getLatitude();
-                double lon = matchedList.get(0).getLongitude();
-                LatLng locationDetails = new LatLng(lat, lon);
-                marker = new MarkerOptions().position(locationDetails);
-                mMap.addMarker(marker);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails, (float) 14));
                 break;
-
-            case R.id.add_button:
-                if (MainActivity.attractList.isEmpty()){
-                    MainActivity.attractList.add("nothing");
-                    MainActivity.attractList.add("Marina Bay Sands");
-                }
-                searchEditText = (EditText) getView().findViewById(R.id.search_box);
-                searchText = searchEditText.getText().toString();
-                locationName = correctedSearch(searchText);
-                MainActivity.attractList.add(locationName);
-                // re-solve using a new attractList
-                try {
-
-                    String[] solveList = MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]);
-                    double budget = Double.parseDouble(AttractionList.Budget.getText().toString());
-                    Solver.getSolution(solveList, budget);
-                    //setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                };
 
             case R.id.change_view_button:
                 if (n==0)
@@ -160,10 +147,10 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0,0,300,0);
+        mMap.setPadding(0,300,0,0);
         //Set default current location to MBS
         LatLng currentLocation = new LatLng(1.2826, 103.8584);
-        if (MainActivity.attractList != null)
+        if (SolutionSet.route != null)
             showPolyline();
         mMap.addMarker(new MarkerOptions().position(currentLocation));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,(float) 13.6));
