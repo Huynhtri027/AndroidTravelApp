@@ -68,7 +68,12 @@ public class AttractionList extends Fragment implements View.OnClickListener {
 
     @Override
     public void onStart(){
-        List.setAdapter(adapter);
+        MainActivity.attractList.clear();
+        adapter.clear();
+        adapter.notifyDataSetChanged();
+        MainActivity.attractList.add("nothing");
+        MainActivity.attractList.add("Marina Bay Sands");
+        adapter.add("Marina Bay Sands");
         super.onStart();
     }
 

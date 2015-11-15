@@ -7,4 +7,8 @@ import java.util.ArrayList;
  */
 public class Methods {
     public static ArrayList<String[]> allMethods=new ArrayList<>();
+
+    public static void clear(){
+        allMethods=new ArrayList<>();
+    }
 }

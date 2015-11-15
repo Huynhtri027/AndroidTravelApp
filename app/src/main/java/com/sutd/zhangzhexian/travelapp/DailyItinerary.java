@@ -27,9 +27,9 @@ public class DailyItinerary extends Fragment {
     View root;
     TextView Cost;
     TextView Time;
-    static SolutionSet myRoute;
     ListView Daily;
     CustomListAdapter adapter;
+    Solver myRoute;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -84,7 +84,8 @@ public class DailyItinerary extends Fragment {
                 System.out.println(MainActivity.attractList);
                 String[] solveList = MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]);
                 double budget = Double.parseDouble(AttractionList.Budget.getText().toString());
-                Solver.getSolution(solveList, budget);
+                myRoute = new Solver();
+                myRoute.getSolution(solveList, budget);
                 //setAttractionList(MainActivity.attractList.toArray(new String[MainActivity.attractList.size()]), Double.parseDouble(AttractionList.Budget.getText().toString()));
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
@@ -113,10 +114,6 @@ public class DailyItinerary extends Fragment {
 
 
 
-    public static void setAttractionList(String[] solveList, double budget) throws CloneNotSupportedException {
-        myRoute = Solver.getSolution(solveList, budget);
-
-    }
 
 
 

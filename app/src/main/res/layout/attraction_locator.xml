@@ -43,16 +43,6 @@
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:id="@+id/add_button"
-            android:layout_alignTop="@+id/search_button"
-            android:layout_toEndOf="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:textSize="10dp" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_height="wrap_content"
             android:text="@string/change_view"
             android:id="@+id/change_view_button"
             android:layout_below="@+id/search_box"
