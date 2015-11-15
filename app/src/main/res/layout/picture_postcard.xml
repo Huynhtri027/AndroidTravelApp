@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="50dp"
     android:padding="10dp" >
 
     <Button android:id="@+id/button1"
@@ -16,8 +15,8 @@
     <ImageView android:id="@+id/image"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_width="350dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:scaleType="fitXY" />
 
     <EditText android:id="@+id/date"
