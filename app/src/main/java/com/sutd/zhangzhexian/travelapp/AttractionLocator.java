@@ -94,7 +94,6 @@ public class AttractionLocator extends Fragment implements OnMapReadyCallback, V
                     double lat = matchedList.get(0).getLatitude();
                     double lon = matchedList.get(0).getLongitude();
                     LatLng locationDetails = new LatLng(lat, lon);
-                    mMap.clear();
                     marker = new MarkerOptions().position(locationDetails).title(locationName);
                     mMap.addMarker(marker);
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationDetails,13));
