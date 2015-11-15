@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        attractList.add("Marina Bay Sands");
+
     }
 
 
